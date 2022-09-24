@@ -39,7 +39,7 @@
         "fields": ["biofuel_electricity", "coal_electricity","year"]
       }
     },
-    {"filter": "datum.year == year_selection"},
+
     {"calculate": "datum.year + 1", "as": "year"},
     {"calculate": "datum.biofuel_electricity + 1", "as": "biofuel_electricity"},
     {"calculate": "datum.coal_electricity + 1", "as": "coal_electricity"}
