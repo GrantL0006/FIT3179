@@ -16,10 +16,11 @@
           "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/Homework%20Wk9/data/world_energy_consumption_data_selected.csv"
         },
         "key": "country",
-        "fields": ["solar_elec_per_capita"]
+        "fields": ["solar_elec_per_capita","fossil_energy_per_capita"]
       }
     },
-    {"calculate" : "datum.solar_elec_per_capita + 1", "as": "solar electric"}
+    {"calculate" : "datum.solar_elec_per_capita + 1", "as": "solar electric"},
+    {"calculate" : "datum.fossil_energy_per_capita + 1", "as": "fossil energy"}
 
   ],
   "mark": {"type": "geoshape"},
