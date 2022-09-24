@@ -44,7 +44,7 @@
     "color": {
       "field": "solar electric",
       "type": "quantitative",
-      "scale": {"type": "log", "scheme": "yelloworangered", "reverse": "true"},
+      "scale": {"type": "log", "scheme": "yelloworangered", "reverse": "true"}
     },
     "opacity": {
       "value":1
