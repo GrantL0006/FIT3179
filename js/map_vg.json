@@ -5,52 +5,40 @@
   "title": "Energy Consumption",
   "projection": {"type": "equalEarth"},
   "data": {
-    "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/Homework%20Wk9/js/ne_110m_admin_0_countries.json",
+    "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/js/ne_110m_admin_0_countries.json",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
   },
-  "params": [
+    "params": [
     {
-      "name": "year_selection",
+      "name": "electricity_source",
       "bind": {
         "input": "select",
-        "options": [
-          "2009",
-          "2019"
-        ],
-        "labels": [
-          "2009",
-          "2019"
-        ],
-        "name": "Current Viewing Year"
+        "options": ["biofuel_electricity", "coal_electricity"],
+        "labels": ["BioFuel", "Coal"],
+        "name": "Electricity Source: "
       }
-      
     }
   ],
-
-  
   "transform": [
     {
       "lookup": "properties.NAME",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/Homework%20Wk9/data/World%20Energy%20Consumption%20-%20test.csv"
+          "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/World%20Energy%20Consumption%20-%20test.csv"
         },
         "key": "country",
-        "fields": ["biofuel_electricity", "coal_electricity","year"]
+        "fields": ["year","biofuel_electricity", "coal_electricity"]
       }
-    },
-
-    {"calculate": "datum.year + 1", "as": "year"},
-    {"calculate": "datum.biofuel_electricity + 1", "as": "biofuel_electricity"},
-    {"calculate": "datum.coal_electricity + 1", "as": "coal_electricity"}
+    }
 
   ],
+
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
       "field": "biofuel_electricity",
       "type": "quantitative",
-      "scale": {"type": "log", "scheme": "yelloworangered", "reverse": "true"}
+      "scale": { "type": "symlog", "scheme": "yelloworangered"}
     },
     "opacity": {"value": 1},
     "tooltip": [
