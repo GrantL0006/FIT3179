@@ -1,46 +1,90 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Happiness Score in Countries between 2015 - 2019",
-  "width": 800,
+  "title": "Electric Energy Source 2015 - 2019",
+  "width": 1000,
   "height": 500,
-  "data": {
-    "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/World%20Energy%20Consumption%20-%20test.csv"
-  },
-  "projection": {"type": "equalEarth"},
+  
   "params": [
     {
       "name": "year_selection",
-      "value": 2009,
+      "value": 2015,
       "bind": {
         "input": "range",
-        "min": 2009,
+        "min": 2015,
         "max": 2019,
-        "step": 10,
+        "step": 1,
         "name": "Year Selection: "
+      }
+    },
+    {
+      "name": "electricity_source",
+      "bind": {
+        "input": "select",
+        "options": ["biofuel_electricity", "coal_electricity"],
+        "labels": ["BioFuel", "Coal"],
+        "name": "Electricity Source: "
       }
     }
   ],
-  "transform": [
+  "layer": [
     {
-      "lookup": "country",
-      "from": {
-        "data": {
-          "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/js/ne_110m_admin_0_countries.json",
-          "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-        },
-        "key": "properties.NAME"
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
       },
-      "as": "geo"
+      "mark": {"type": "geoshape", "fill": "skyblue"}
     },
-    {"filter": "datum.year == year_selection"}
-  ],
-  "mark": {"type": "geoshape", "stroke": "white"},
-  "encoding": {
-    "shape": {"field": "geo", "type": "geojson"},
-    "color": {"field": "biofuel_electricity", "type": "quantitative","scale": { "type": "symlog", "scheme": "yelloworangered"}},
-    "tooltip": [
-      {"field": "", "type": "nominal", "title": "Country"},
-      {"field": "biofuel_electricity", "type": "quantitative"}
-    ]
-  }
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/js/ne_110m_graticules_30.json",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": "", "stroke": "lightgrey"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/js/ne_110m_admin_0_countries.json",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/World%20Energy%20Consumption%20-%20recent%20temporal.csv"
+      },
+      "projection": {"type": "equalEarth"},
+      "transform": [
+        {
+          "lookup": "country",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/js/ne_110m_admin_0_countries.json",
+              "format": {
+                "type": "topojson",
+                "feature": "ne_110m_admin_0_countries"
+              }
+            },
+            "key": "properties.NAME"
+          },
+          "as": "geo"
+        },
+        {"filter": "datum.year == year_selection"}
+        
+      ],
+      
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "biofuel_electricity",
+          "type": "quantitative",
+          "scale": {"type": "threshold", "domain":[0, 5, 10, 20, 40, 80 ], "scheme": "yelloworangered"}
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal", "title": "Country"},
+          {"field": "biofuel_electricity", "type": "quantitative"}
+        ]
+      }
+    }
+  ]
 }
