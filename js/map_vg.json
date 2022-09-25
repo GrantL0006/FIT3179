@@ -3,7 +3,9 @@
   "title": "Electric Energy Source 2015 - 2019",
   "width": 1000,
   "height": 500,
-  
+  "data": {
+    "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/World%20Energy%20Consumption%20-%20recent%20temporal.csv"
+  },
   "params": [
     {
       "name": "year_selection",
@@ -14,15 +16,6 @@
         "max": 2019,
         "step": 1,
         "name": "Year Selection: "
-      }
-    },
-    {
-      "name": "electricity_source",
-      "bind": {
-        "input": "select",
-        "options": ["biofuel_electricity", "coal_electricity"],
-        "labels": ["BioFuel", "Coal"],
-        "name": "Electricity Source: "
       }
     }
   ],
@@ -68,21 +61,44 @@
           },
           "as": "geo"
         },
-        {"filter": "datum.year == year_selection"}
-        
+        {"filter": "datum.year == year_selection"},
+        {"calculate":"datum.per_capita_electricity", "as": "Electricity Consumption Per Capita (kWh)"},
+        {"calculate":"datum.biofuel_perc", "as": "BioFuel Percentage (%)"},
+        {"calculate":"datum.coal_perc", "as": "Coal Percentage (%)"},
+        {"calculate":"datum.fossil_perc", "as": "Fossil Percentage (%)"},
+        {"calculate":"datum.gas_perc", "as": "Gas Percentage (%)"},
+        {"calculate":"datum.hydro_perc", "as": "Hydro Percentage (%)"},
+        {"calculate":"datum.nuclear_perc", "as": "Nuclear Percentage (%)"},
+        {"calculate":"datum.oil_perc", "as": "Oil Percentage (%)"},
+        {"calculate":"datum.solar_perc", "as": "Solar Percentage (%)"},
+        {"calculate":"datum.wind_perc", "as": "Wind Percentage (%)"},
+        {"calculate":"datum.renewable_perc", "as": "Renewable Percentage (%)"}
       ],
-      
       "mark": {"type": "geoshape", "stroke": "white"},
       "encoding": {
         "shape": {"field": "geo", "type": "geojson"},
         "color": {
-          "field": "biofuel_electricity",
+          "field": "Electricity Consumption Per Capita (kWh)",
           "type": "quantitative",
-          "scale": {"type": "threshold", "domain":[0, 5, 10, 20, 40, 80 ], "scheme": "yelloworangered"}
+          "scale": {
+            "type": "threshold",
+            "domain": [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000],
+            "scheme": "yelloworangered"
+          }
         },
         "tooltip": [
           {"field": "country", "type": "nominal", "title": "Country"},
-          {"field": "biofuel_electricity", "type": "quantitative"}
+          {"field": "Electricity Consumption Per Capita (kWh)", "type": "quantitative"},
+          {"field": "BioFuel Percentage (%)", "type": "quantitative", "format": ".2f"},
+          {"field": "Coal Percentage (%)", "type": "quantitative" , "format": ".2f"},
+          {"field": "Fossil Percentage (%)", "type": "quantitative", "format": ".2f"},
+          {"field": "Gas Percentage (%)", "type": "quantitative", "format": ".2f"},
+          {"field": "Hydro Percentage (%)", "type": "quantitative", "format": ".2f"},
+          {"field": "Nuclear Percentage (%)", "type": "quantitative", "format": ".2f"},
+          {"field": "Oil Percentage (%)", "type": "quantitative", "format": ".2f"},
+          {"field": "Solar Percentage (%)", "type": "quantitative", "format": ".2f"},
+          {"field": "Wind Percentage (%)", "type": "quantitative", "format": ".2f"},
+          {"field": "Renewable Percentage (%)", "type": "quantitative", "format": ".2f"}
         ]
       }
     }
