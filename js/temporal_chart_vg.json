@@ -38,6 +38,7 @@
         "encoding": {
           "x": {
             "field": "Year",
+            "type": "temporal",
             "timeUnit": "year",
             "scale": {"domain": {"param": "time_brush"}},
             "axis": {"title": "", "tickCount": 5, "grid": false}
@@ -47,17 +48,32 @@
           {
             "encoding": {
               "y": {
-                "title": "Count of Earthquakes",
+                "title": "Energy Consumption (kWh)",
                 "field": "Pivot Field Values",
                 "type": "quantitative"
               },
-              "color": {"field": "Pivot Field Names", "type": "nominal"}
+              "color": {
+                "field": "Pivot Field Names", 
+                "type": "nominal",
+                "legend": {
+                  "title": "Electricity Sources (kWh)"
+                }}
             },
+            
             "layer": [
               {"mark": {"type": "area", "clip": true}},
               {
-                "transform": [{"filter": {"param": "hover", "empty": false}}],
-                "mark": "point"
+                "transform": [{
+                  "filter":{
+                    "param": "hover",
+                    "empty": false
+                  }
+                }],
+                "mark": {
+                  "type": "area",
+                  "line": false,
+                  "point": true
+                }
               }
             ]
           },
