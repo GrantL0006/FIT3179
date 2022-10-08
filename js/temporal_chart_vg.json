@@ -32,30 +32,75 @@
       },
       {
         "data": {
-          "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/Sheet%201_data.csv"
+          "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/Sheet%201_data-no-per-cap.csv"
         },
         "width": "container",
-        "mark": "area",
         "encoding": {
           "x": {
             "field": "Year",
-            "type": "temporal",
             "timeUnit": "year",
             "scale": {"domain": {"param": "time_brush"}},
             "axis": {"title": "", "tickCount": 5, "grid": false}
-          },
-          "y": {
-            "title": "Count of Earthquakes",
-            "field": "Pivot Field Values",
-            "type": "quantitative"
-            },
-            "color": {
-            "field": "Pivot Field Names", 
-            "type": "nominal"
           }
-        }
+        },
+        "layer": [
+          {
+            "encoding": {
+              "y": {
+                "title": "Count of Earthquakes",
+                "field": "Pivot Field Values",
+                "type": "quantitative"
+              },
+              "color": {"field": "Pivot Field Names", "type": "nominal"}
+            },
+            "layer": [
+              {"mark": {"type": "area", "clip": true}},
+              {
+                "transform": [{"filter": {"param": "hover", "empty": false}}],
+                "mark": "point"
+              }
+            ]
+          },
+          {
+            "transform": [
+              {
+                "pivot": "Pivot Field Names",
+                "value": "Pivot Field Values",
+                "groupby": ["Year"]
+              }
+            ],
+            "mark": "rule",
+            "encoding": {
+              "opacity": {
+                "condition": {"value": 0.3, "param": "hover", "empty": false},
+                "value": 0
+              },
+              "tooltip": [
+                {"field": "Biofuel Elec Per Capita", "type": "quantitative"},
+                {"field": "Coal Elec Per Capita", "type": "quantitative"},
+                {"field": "Gas Elec Per Capita", "type": "quantitative"},
+                {"field": "Hydro Elec Per Capita", "type": "quantitative"},
+                {"field": "Nuclear Elec Per Capita", "type": "quantitative"},
+                {"field": "Renewables Elec Per Capita", "type": "quantitative"},
+                {"field": "Solar Elec Per Capita", "type": "quantitative"},
+                {"field": "Wind Elec Per Capita", "type": "quantitative"}
+              ]
+            },
+            "params": [
+              {
+                "name": "hover",
+                "select": {
+                  "type": "point",
+                  "fields": ["Year"],
+                  "nearest": true,
+                  "on": "mouseover",
+                  "clear": "mouseout"
+                }
+              }
+            ]
+          }
+        ]
       }
     ],
     "config": {"title": {"font": "sans-serif", "fontSize": 14}}
   }
-  
