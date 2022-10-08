@@ -31,32 +31,31 @@
         }
       },
       {
-        "data": "",
+        "data": {
+          "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/Sheet%201_data.csv"
+        },
         "width": "container",
-        "transform": [
-          {
-            "fold": ["country"]
-          }
-        ],
         "mark": "area",
         "encoding": {
           "x": {
-            "field": "year",
+            "field": "Year",
+            "type": "temporal",
             "timeUnit": "year",
             "scale": {"domain": {"param": "time_brush"}},
             "axis": {"title": "", "tickCount": 5, "grid": false}
           },
           "y": {
-            "title": "Count of Earthquakes"},
-            "color": {
-            "field": "",
-            "scale": {
-              "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7f0000"]
+            "title": "Count of Earthquakes",
+            "field": "Pivot Field Values",
+            "type": "quantitative"
             },
-            "legend": null
+            "color": {
+            "field": "Pivot Field Names", 
+            "type": "nominal"
           }
         }
       }
     ],
     "config": {"title": {"font": "sans-serif", "fontSize": 14}}
   }
+  
