@@ -6,8 +6,11 @@
     "vconcat": [
       {
         "width": "container",
-        "height": 100,
-        "title": "Use this line chart to filter out the data based on time",
+        "height": 150,
+        "title": {
+          "text": "Total Global Electricity Consumption (Per Capita)",
+          "subtitle": "Use this chart to select time interval"
+          },
         "params": [
           {
             "name": "time_brush",
@@ -19,14 +22,14 @@
           "x": {
             "field": "year",
             "timeUnit": "year",
-            "axis": {"title": "year", "format": "%Y"},
+            "axis": {"title": "Year", "format": "%Y"},
             "scale": {"domain": [1985, 2019]}
           },
           "y": {
             "aggregate": "sum",
             "field": "per_capita_electricity",
-            "axis": {"grid": false},
-            "title": "Count"
+            "axis": {"grid": true},
+            "title": "Total Consumption (kWh)"
           }
         }
       },
@@ -35,6 +38,10 @@
           "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/Sheet%201_data-cleaned.csv"
         },
         "width": "container",
+        "title": {
+          "text": "Electricity Consumption Sources (Per Capita)",
+          "subtitle": "Use legend to highlight sources"
+          },
         "encoding": {
           "x": {
             "field": "Year",
@@ -143,6 +150,5 @@
           }
         ]
       }
-    ],
-    "config": {"title": {"font": "sans-serif", "fontSize": 14}}
+    ]
   }
