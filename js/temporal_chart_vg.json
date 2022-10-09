@@ -61,7 +61,25 @@
             },
             
             "layer": [
-              {"mark": {"type": "area", "clip": true}},
+              {
+                "mark": {"type": "area", "clip": true},
+                "params": [{
+                  "name": "elec_source",
+                  "select": {
+                    "type": "point",
+                    "fields": ["Pivot Field Names"]
+                  },
+                  "bind": "legend"
+                }],
+                "encoding": {
+                  "opacity":{
+                    "condition": {
+                      "param": "elec_source", "value": 1
+                    },
+                    "value": 0.2
+                  }
+                }
+              },
               {
                 "transform": [{
                   "filter":{
@@ -73,6 +91,14 @@
                   "type": "area",
                   "line": false,
                   "point": true
+                },
+                "encoding": {
+                  "opacity":{
+                    "condition": {
+                      "param": "elec_source", "value": 1
+                    },
+                    "value": 0.2
+                  }
                 }
               }
             ]
