@@ -1,15 +1,16 @@
-#energy_map {
-	top:100px;
-	bottom: 50px; 
-	left: 100px;
-	right: 100px;
-	height: 800px;
+.fixed_page{
+	width: 900px;
+	margin: auto;
+	padding: 50px;
+	padding-top: 30px;
 }
 
-#energy_chart {
-	top:50px; 
-	bottom: 100px; 
-	left: 100px;
-	right: 100px;
-	width: 1000px;  
+
+.energy_map_container{
+	width: 100%;
 }
+
+.energy_chart_container {
+	width: 75%;
+}
+

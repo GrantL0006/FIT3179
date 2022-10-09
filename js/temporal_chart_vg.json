@@ -3,6 +3,7 @@
     "data": {
       "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/World%20Energy%20Consumption%20-%20full%20temporal%20-%20reduced%20column.csv"
     },
+    
     "vconcat": [
       {
         "width": "container",
@@ -64,7 +65,8 @@
                 "type": "nominal",
                 "legend": {
                   "title": "Electricity Sources (kWh)"
-                }}
+                }
+              }
             },
             
             "layer": [

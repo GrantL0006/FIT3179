@@ -5,7 +5,7 @@
     "fontSize": 16
     },
   
-  "width": 1000,
+  "width": "container",
   "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/GrantL0006/FIT3179/main/data/World%20Energy%20Consumption%20-%20recent%20temporal.csv"
