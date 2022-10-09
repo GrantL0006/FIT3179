@@ -91,27 +91,6 @@
                     "value": 0.2
                   }
                 }
-              },
-              {
-                "data": {
-                  "values": [{"x_annotation": 2000, "y_annotation": 800000}]
-                },
-                "mark": {"type": "text", "dx": -100, "dy": -10},
-                "encoding": {
-                  "text": {"value": "Significant Increase"},
-                  "x": {
-                    "field": "x_annotation",
-                    "type": "quantitative",
-                    "timeUnit": "year",
-                    "title": ""
-                  },
-                  "y": {
-                    "field": "y_annotation",
-                    "type": "quantitative",
-                    "title": ""
-                  },
-                  "color": {"value": "black"}
-                }
               }
             ]
           },
@@ -152,6 +131,21 @@
                 }
               }
             ]
+          },
+          {
+            "data": {"values": [{"x_annotation": 2000, "y_annotation": 800000}]},
+            "mark": {"type": "text", "dx": -100, "dy": -10},
+            "encoding": {
+              "text": {"value": "Significant Increase"},
+              "x": {
+                "field": "x_annotation",
+                "type": "quantitative",
+                "timeUnit": "year",
+                "title": ""
+              },
+              "y": {"field": "y_annotation", "type": "quantitative", "title": ""},
+              "color": {"value": "black"}
+            }
           }
         ]
       }
