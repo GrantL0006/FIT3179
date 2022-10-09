@@ -15,7 +15,18 @@
   <div class="fixed_page">
     <h1>Global Energy Consumption</h1>
     <div id="energy_map", class="energy_map_container"></div>
-
+    <div class="row">
+      <div class="column">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus ex, congue id dapibus eget, consectetur eget lorem. Aliquam eu enim sollicitudin orci suscipit suscipit ut ut eros. Praesent efficitur odio ac pharetra vulputate. Etiam non nulla at justo blandit malesuada. Nunc a justo ut nibh elementum maximus ut eu eros. Duis blandit rhoncus augue, et hendrerit leo mollis vel. In pretium erat lacinia neque iaculis faucibus. Fusce tincidunt malesuada lectus quis molestie. Suspendisse consectetur at magna fermentum efficitur.
+        </p>
+      </div>
+      <div class="column">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus ex, congue id dapibus eget, consectetur eget lorem. Aliquam eu enim sollicitudin orci suscipit suscipit ut ut eros. Praesent efficitur odio ac pharetra vulputate. Etiam non nulla at justo blandit malesuada. Nunc a justo ut nibh elementum maximus ut eu eros. Duis blandit rhoncus augue, et hendrerit leo mollis vel. In pretium erat lacinia neque iaculis faucibus. Fusce tincidunt malesuada lectus quis molestie. Suspendisse consectetur at magna fermentum efficitur. Maecenas consequat nunc nisi.
+        </p>       
+      </div>
+    </div>
     <div id="energy_chart", class="energy_chart_container"></div>
 
 
@@ -36,7 +47,7 @@
     }).catch(console.error);
 
     var spec3 = "js/temporal_chart_vg.json";
-    vegaEmbed('#energy_chart', spec3,{"actions":false}).then(function (result) {
+    vegaEmbed('#energy_chart', spec3).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 
